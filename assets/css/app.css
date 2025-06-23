@@ -41,7 +41,7 @@ img {
   vertical-align: middle;
 }
 .logo {
-  width: 200px;
+  width: 180px;
   height: 180px;
   object-fit: contain;
 }
@@ -50,11 +50,37 @@ ul.list-style,
 ol.list-style {
   padding: 0;
 }
+#contact_page{
+  padding-top: 150px;
+}
+#team_page{
+  padding-top: 150px;
+}
 
 ul.list-style li::marker,
 ol.list-style li::marker {
   color: #f7db0d;
 }
+.blur-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(6px);
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 9;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+/* When active */
+.blur-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
 
 .unstyled {
   padding-left: 0;
@@ -193,6 +219,10 @@ h1 {
   h1 {
     font-size: 36px;
     letter-spacing: -0.47px;
+  }
+  header.small-screen .mobile-menu img {
+    width: 120px;
+    height: 120px;
   }
 }
 @media (max-width: 430px) {
@@ -1861,9 +1891,12 @@ header.large-screens nav .navbar-collapse .right-content li i:hover {
   color: #f7db0d;
 }
 header.small-screen {
-  position: fixed;
-  z-index: 50;
+  /* position: fixed; */
+
+  background: none;
+   z-index: 50;
   width: 100%;
+  height: 100%;
   top: 0;
   height: 175px;
   padding: 18px 0;
@@ -2247,6 +2280,12 @@ footer .footer-main .widget .input-group button {
 @media (max-width: 992px) {
   .sidebar .filters .filter-block .list .filter-checkbox label {
     font-size: 20px;
+  }
+  #contact_page{
+    padding-top:0px ;
+  }
+  #team_page{
+    padding-top:0px ;
   }
 }
 @media (max-width: 767px) {
