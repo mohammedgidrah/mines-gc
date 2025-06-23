@@ -439,7 +439,7 @@ Helpers
 }
 
 .light-gray {
-  color: #d6d8db !important;
+  color: #000000 !important;
 }
 
 .bg-light-gray {
@@ -463,11 +463,11 @@ Helpers
 }
 
 .bg-red {
-  background-color: #962723 !important;
+  background-color: #F7D955 !important;
 }
 
 .bg-purple {
-  background-color: #503582 !important;
+  background-color: #F7D955 !important;
 }
 
 .br-30 {
@@ -824,6 +824,7 @@ Helpers
 
 .mb-4p {
   margin-bottom: 4px;
+  color: #000000;
 }
 
 .p-96 {
@@ -3083,20 +3084,22 @@ footer .footer-main .widget .input-group button {
   left: 16px;
 }
 .team-card.bg-red .img-block .overlay {
-  background: linear-gradient(
-    180deg,
-    rgba(138, 37, 33, 0) 45.11%,
-    rgba(138, 37, 33, 0.3) 70.47%,
-    #832320 100%
-  );
+background: linear-gradient(
+  180deg,
+  rgba(247, 217, 85, 0) 45.11%,
+  rgba(247, 217, 85, 0.3) 70.47%,
+  #F7D955 100%
+);
+
 }
 .team-card.bg-purple .img-block .overlay {
-  background: linear-gradient(
-    180deg,
-    rgba(77, 52, 125, 0) 45.11%,
-    rgba(77, 52, 125, 0.3) 70.47%,
-    #4d347d 100%
-  );
+background: linear-gradient(
+  180deg,
+  rgba(247, 217, 85, 0) 45.11%,
+  rgba(247, 217, 85, 0.3) 70.47%,
+  #F7D955 100%
+);
+
 }
 .team-card .social-icons {
   display: flex;
