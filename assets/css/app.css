@@ -195,9 +195,18 @@ h1 {
   line-height: 120%;
   letter-spacing: -1.22px;
 }
+#equipment-padding{
+  padding-top:  200px;
+}
 @media (max-width: 992px) {
   h1 {
     font-size: 52px;
+  }
+  #equipment-padding{
+    padding-top:  10px;
+  }
+  #about-padding{
+    padding-top:  0;
   }
   .mobile-menu {
     display: flex;
@@ -2424,7 +2433,7 @@ footer .footer-main .widget .input-group button {
 }
 
 .hero-banner-2 {
-  background: url(../media/banner/hero-banner2.png);
+  /* background: url(../media/banner/hero-banner2.png); */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -2686,13 +2695,13 @@ footer .footer-main .widget .input-group button {
 
 .page-title-banner {
   padding: 170px 0 100px;
-  background: linear-gradient(
+  /* background: linear-gradient(
       78deg,
       #000 0%,
       rgba(23, 23, 23, 0.6) 54.61%,
       #0d0d0d 100%
     ),
-    linear-gradient(180deg, rgba(13, 13, 13, 0.78) 0%, rgba(0, 0, 0, 0) 19.53%);
+    linear-gradient(180deg, rgba(13, 13, 13, 0.78) 0%, rgba(0, 0, 0, 0) 19.53%); */
 }
 @media (max-width: 492px) {
   .page-title-banner {
