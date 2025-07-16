@@ -1928,6 +1928,9 @@ header.small-screen .hamburger-menu {
   cursor: pointer;
   z-index: 9998;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  /* position: fixed;
+  right: 30px;
+  top: 60px; */
 }
 header.small-screen .hamburger-menu .bar {
   position: relative;
@@ -3866,6 +3869,9 @@ footer .footer-main .widget .input-group button {
 @media (max-width: 992px) {
   .tournament-detail .nav-tabs {
     margin: 0 auto;
+  }
+  .page-title-banner{
+   padding: 0;
   }
 }
 .tournament-detail .nav-tabs .nav-item .nav-link {
@@ -5902,12 +5908,7 @@ footer .footer-main .widget .input-group button {
   align-items: center;
 }
 @media (max-width: 1199.98px) {
-  /* .footer-main{
-    display: flex;
-     justify-content: center;
-    background: red;
-    align-items: center;
-  } */
+ 
   #footer_row {
     display: flex;
     justify-content: center;
@@ -5985,3 +5986,178 @@ footer .footer-main .widget .input-group button {
     margin-bottom: 50px;
   }
 }
+
+.page-title-banner {
+        /* min-height: 100vh; */
+        position: relative;
+        overflow: hidden;
+      }
+
+      .slider-container {
+        position: relative;
+        max-width: 100%;
+        overflow: hidden;
+      }
+
+      .slider-wrapper {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
+
+      .slide {
+        min-width: 100%;
+        display: flex;
+        align-items: center;
+        padding: 64px 0;
+      }
+
+      .content {
+        color: white;
+      }
+
+      .cus-btn {
+        display: inline-flex;
+        align-items: center;
+        padding: 12px 24px;
+        background: #000000;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .cus-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      .cus-btn i {
+        margin-right: 8px;
+      }
+
+      .slide h1 {
+        font-size: 3.5rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .game-title {
+        font-weight: bold;
+        font-size: 1.5rem;
+        color: #f7d955;
+        margin-bottom: 1rem;
+      }
+
+      .medium-gray {
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.6;
+      }
+
+      .game-image {
+        border-radius: 15px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+      }
+
+      .game-image:hover {
+        transform: scale(1.05);
+      }
+
+      .slider-controls {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        gap: 20px;
+       }
+      .slider-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 0px;
+      }
+
+      .slider-nav {
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .slider-nav:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.1);
+      }
+
+      .slider-indicators {
+        display: flex;
+        gap: 10px;
+      }
+
+      .indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.4);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .indicator.active {
+        background: #f7d955;
+        transform: scale(1.2);
+      }
+
+      .arcade-stats {
+        display: flex;
+        gap: 30px;
+        margin-top: 20px;
+      }
+
+      .stat-item {
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #f7d955;
+      }
+
+      .stat-label {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      @media (max-width: 768px) {
+        .slide h1 {
+          font-size: 2.5rem;
+        }
+
+        .slider-nav {
+          width: 35px;
+          height: 35px;
+        }
+
+        .arcade-stats {
+          flex-direction: row;
+          justify-content: center;
+          gap: 15px;
+        }
+
+        .slider-controls {
+          gap: 15px;
+        }
+      }
