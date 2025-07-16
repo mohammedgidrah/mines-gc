@@ -38,7 +38,7 @@
 
   <body>
     <!-- Preloader-->
-    <!-- <div id="preloader">
+    <div id="preloader">
         <div class="pyramid-loader">
             <div class="wrapper">
                 <span class="side side1"></span>
@@ -48,7 +48,7 @@
                 <span class="shadow"></span>
             </div>
         </div>
-    </div> -->
+    </div>
     <!-- Back To Top Start -->
     <a href="#main-wrapper" id="backto-top" class="back-to-top"
       ><i class="fas fa-angle-up"></i
@@ -85,7 +85,7 @@
                     <li><a href="activities.html">Activities </a></li>
                     <li><a href="arcadegames.html">Arcade games </a></li>
                     <li><a href="equipment.html">Equipment</a></li>
-                    <li><a href=" ">VIP Room </a></li>
+                    <li><a href="viprooms.html">VIP Room </a></li>
                   </ul>
                 </li>
                 <li class="menu-item has-children">
@@ -133,7 +133,7 @@
                   <li><a href="activities.html">Activities </a></li>
                   <li><a href="arcadegames.html">Arcade games </a></li>
                   <li><a href="equipment.html">Equipment </a></li>
-                  <li><a href=" ">VIP Room </a></li>
+                  <li><a href="viprooms.html">VIP Room </a></li>
                 </ul>
               </li>
               <li class="has-children">
@@ -540,7 +540,7 @@
 
       <!-- Footer Area Start  -->
       <footer>
-        <!-- <div class="image-slider pt-40">
+        <div class="image-slider pt-40">
           <div class="img-block">
             <img src="assets/media/images/bs-1.png" alt="" />
           </div>
@@ -574,7 +574,7 @@
           <div class="img-block">
             <img src="assets/media/images/bs-11.png" alt="" />
           </div>
-        </div> -->
+        </div>
         <div class="container">
           <div class="footer-main">
             <div class="row" id="footer_row">
@@ -639,38 +639,79 @@
       </footer>
       <!-- Footer Area End  -->
 
-      <!-- modal-popup area start  -->
-      <!-- <div class="modal fade" id="videoModal" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="top_bar">
-              <h4 class="modal-title">Demon Slayer Season 4</h4>
-              <button
-                type="button"
-                class="close"
-                id="closeVideoModalButton"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true"
-                  ><i class="fas fa-times"></i> <b>Close</b></span
-                >
-              </button>
-            </div>
-            <div class="modal-body">
-              <video controls title="Video">
-                <source
-                  src="assets/media/video/movie-video.mp4"
-                  type="video/mp4"
-                />
-              </video>
-            </div>
-          </div>
-        </div>
-      </div> -->
-      <!-- modal-popup area end  -->
+       
     </div>
+<script>
+    let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const sliderWrapper = document.getElementById('sliderWrapper');
+        const indicators = document.querySelectorAll('.indicator');
 
+        function updateSlider() {
+            const translateX = -(currentSlideIndex * 100);
+            sliderWrapper.style.transform = `translateX(${translateX}%)`;
+            
+            // Update indicators
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlideIndex);
+            });
+        }
+
+        function changeSlide(direction) {
+            currentSlideIndex += direction;
+            
+            if (currentSlideIndex >= totalSlides) {
+                currentSlideIndex = 0;
+            } else if (currentSlideIndex < 0) {
+                currentSlideIndex = totalSlides - 1;
+            }
+            
+            updateSlider();
+        }
+
+        function currentSlide(index) {
+            currentSlideIndex = index - 1;
+            updateSlider();
+        }
+
+        // Auto-slide removed - manual control only
+
+        // Touch/swipe support for mobile
+        let startX = 0;
+        let endX = 0;
+
+        sliderWrapper.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+
+        sliderWrapper.addEventListener('touchend', (e) => {
+            endX = e.changedTouches[0].clientX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = startX - endX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    changeSlide(1); // Swipe left - next slide
+                } else {
+                    changeSlide(-1); // Swipe right - previous slide
+                }
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            } else if (e.key === 'ArrowRight') {
+                changeSlide(1);
+            }
+        });
+</script>
     <!-- Jquery Js -->
     <script src="assets/js/vendor/jquery-3.6.3.min.js"></script>
     <script src="assets/js/vendor/bootstrap.min.js"></script>
