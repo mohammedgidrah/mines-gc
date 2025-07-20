@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+    <title>VIP Room Gallery - Gaming Center</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="assets/media/logo.png"
+    />
+
+     <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/vendor/font-awesome.css" />
+    <link rel="stylesheet" href="assets/css/vendor/slick.css" />
+    <link rel="stylesheet" href="assets/css/vendor/slick-theme.css" />
+    <link rel="stylesheet" href="assets/css/vendor/aksVideoPlayer.css" />
+    <link rel="stylesheet" href="assets/css/app.css" />
+     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+<style>
+input {
+    display: none;
+}
+
+.menu_img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+ 
+/* Base styles - Mobile first approach */
+.book {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: -70px;
+    border-radius: 10px;
+    padding: 20px;
+    /* Remove large top padding for mobile, add via media query for desktop */
+    padding-top: 0;
+}
+
+#cover {
+    width: min(95vw, 500px);
+    height: min(95vw, 500px);
+    min-width: 220px;
+    min-height: 220px;
+    background-color: #F7D955;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    font-size: clamp(14px, 5vw, 28px);
+    font-weight: bold;
+    text-align: center;
+    padding: clamp(8px, 3vw, 20px);
+    box-sizing: border-box;
+}
+
+.flip-book {
+    width: min(95vw, 500px);
+    height: min(95vw, 500px);
+    min-width: 220px;
+    min-height: 220px;
+    position: relative;
+    perspective: 1500px;
+}
+
+.flip {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: left;
+    transform-style: preserve-3d;
+    transform: rotateY(0deg);
+    transition: .5s;
+    color: #FFFFFF;
+}
+
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: clamp(12px, 3vw, 20px);
+    backface-visibility: hidden;
+}
+
+.front {
+    background-color: #F7D955;
+    box-shadow: inset 20px 0 50px rgba(0,0,0,0.1), 0 2px 5px rgba(0,0,0,.1);
+}
+
+.back {
+    background-color: #000000;
+    transform: rotateY(180deg);
+    border-left: 1px solid #F7D955;
+}
+
+.category {
+    font-size: clamp(14px, 4vw, 24px);
+    color: #FFFFFF;
+    font-weight: bold;
+    margin-bottom: clamp(8px, 2.5vw, 20px);
+    border-bottom: 2px solid #F7D955;
+    padding-bottom: clamp(5px, 1.5vw, 10px);
+}
+
+.product {
+    font-size: clamp(12px, 3.5vw, 20px);
+    font-weight: bold;
+    margin: clamp(8px, 2vw, 15px) 0 clamp(5px, 1.5vw, 10px) 0;
+    color: #FFFFFF;
+}
+
+.ingredients {
+    font-size: clamp(9px, 2.5vw, 14px);
+    color: #FFFFFF;
+    line-height: 1.4;
+    margin-bottom: clamp(8px, 2vw, 15px);
+}
+
+.price {
+    font-weight: bold;
+    color: #FFFFFF;
+    font-size: clamp(11px, 3vw, 18px);
+    float: left;
+}
+
+.next-btn, .back-btn {
+    position: absolute;
+    bottom: clamp(10px, 2.5vw, 20px);
+    right: clamp(10px, 2.5vw, 20px);
+    padding: clamp(10px, 2vw, 18px) clamp(18px, 4vw, 28px);
+    background-color: #F7D955;
+    color: #000000;
+    border: none;
+    border-radius: clamp(3px, 1vw, 8px);
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: clamp(12px, 3vw, 18px);
+    min-height: clamp(36px, 8vw, 48px);
+    min-width: clamp(44px, 10vw, 60px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    height: 40px;
+    bottom: 23px;
+    width: 80px;
+    right: 25px;
+}
+
+.back-btn {
+    left: clamp(10px, 2.5vw, 20px);
+    right: auto;
+}
+
+@media screen and (min-width: 1200px) {
+    .book {
+        padding-top: 200px;
+    }
+    #cover, .flip-book {
+        width: 500px !important;
+        height: 500px !important;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .book {
+        padding-top: 0px !important;
+    }
+    #cover, .flip-book {
+        width: min(90vw, 400px) !important;
+        height: min(90vw, 400px) !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .book {
+        padding-top: 10px;
+    }
+    #cover, .flip-book {
+        width: min(98vw, 340px) !important;
+        height: min(98vw, 340px) !important;
+    }
+    .main-wrapper {
+        overflow-x: auto;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .book {
+        padding-top: 0;
+    }
+    #cover, .flip-book {
+        width: min(80vw, 260px) !important;
+        height: min(80vw, 260px) !important;
+        min-width: 180px;
+        min-height: 180px;
+    }
+    .category, .product, .ingredients, .price {
+        font-size: 50%;
+    }
+}
+
+
+/* Large desktop screens */
+@media screen and (max-width: 1200px) {
+ 
+    
+    #cover, .flip-book {
+        width: 500px !important;
+        height: 500px !important;
+    }
+    
+    .category {
+        font-size: 24px;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+    }
+    
+    .product {
+        font-size: 20px;
+        margin: 15px 0 10px 0;
+    }
+    
+    .ingredients {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+    
+    .price {
+        font-size: 18px;
+    }
+    
+  
+    
+    .back-btn {
+        left: 20px;
+    }
+}
+
+/* Landscape orientation adjustments */
+@media screen and (orientation: landscape) and (max-height: 600px) {
+ 
+    
+    #cover, .flip-book {
+        width: 60vh;
+        height: 60vh;
+        min-width: 300px;
+        min-height: 300px;
+    }
+}
+
+/* Z-index ordering for pages */
+#p0 { z-index: 29; }
+#p1 { z-index: 28; }
+#p2 { z-index: 27; }
+#p3 { z-index: 26; }
+#p4 { z-index: 25; }
+#p5 { z-index: 24; }
+#p6 { z-index: 23; }
+#p7 { z-index: 22; }
+#p8 { z-index: 21; }
+#p9 { z-index: 20; }
+#p10 { z-index: 19; }
+#p11 { z-index: 18; }
+#p12 { z-index: 17; }
+#p13 { z-index: 16; }
+#p14 { z-index: 15; }
+#p15 { z-index: 14; }
+#p16 { z-index: 13; }
+#p17 { z-index: 12; }
+#p18 { z-index: 11; }
+#p19 { z-index: 10; }
+#p20 { z-index: 9; }
+#p21 { z-index: 8; }
+#p22 { z-index: 7; }
+#p23 { z-index: 6; }
+#p24 { z-index: 5; }
+#p25 { z-index: 4; }
+#p26 { z-index: 3; }
+#p27 { z-index: 2; }
+#p28 { z-index: 1; }
+
+/* Checked states for flipping pages */
+#c0:checked ~ .flip-book #p0 { transform: rotateY(-180deg); z-index: 1; }
+#c1:checked ~ .flip-book #p1 { transform: rotateY(-180deg); z-index: 2; }
+#c2:checked ~ .flip-book #p2 { transform: rotateY(-180deg); z-index: 3; }
+#c3:checked ~ .flip-book #p3 { transform: rotateY(-180deg); z-index: 4; }
+#c4:checked ~ .flip-book #p4 { transform: rotateY(-180deg); z-index: 5; }
+#c5:checked ~ .flip-book #p5 { transform: rotateY(-180deg); z-index: 6; }
+#c6:checked ~ .flip-book #p6 { transform: rotateY(-180deg); z-index: 7; }
+#c7:checked ~ .flip-book #p7 { transform: rotateY(-180deg); z-index: 8; }
+#c8:checked ~ .flip-book #p8 { transform: rotateY(-180deg); z-index: 9; }
+#c9:checked ~ .flip-book #p9 { transform: rotateY(-180deg); z-index: 10; }
+#c10:checked ~ .flip-book #p10 { transform: rotateY(-180deg); z-index: 11; }
+#c11:checked ~ .flip-book #p11 { transform: rotateY(-180deg); z-index: 12; }
+#c12:checked ~ .flip-book #p12 { transform: rotateY(-180deg); z-index: 13; }
+#c13:checked ~ .flip-book #p13 { transform: rotateY(-180deg); z-index: 14; }
+#c14:checked ~ .flip-book #p14 { transform: rotateY(-180deg); z-index: 15; }
+#c15:checked ~ .flip-book #p15 { transform: rotateY(-180deg); z-index: 16; }
+#c16:checked ~ .flip-book #p16 { transform: rotateY(-180deg); z-index: 17; }
+#c17:checked ~ .flip-book #p17 { transform: rotateY(-180deg); z-index: 18; }
+#c18:checked ~ .flip-book #p18 { transform: rotateY(-180deg); z-index: 19; }
+#c19:checked ~ .flip-book #p19 { transform: rotateY(-180deg); z-index: 20; }
+#c20:checked ~ .flip-book #p20 { transform: rotateY(-180deg); z-index: 21; }
+#c21:checked ~ .flip-book #p21 { transform: rotateY(-180deg); z-index: 22; }
+#c22:checked ~ .flip-book #p22 { transform: rotateY(-180deg); z-index: 23; }
+#c23:checked ~ .flip-book #p23 { transform: rotateY(-180deg); z-index: 24; }
+#c24:checked ~ .flip-book #p24 { transform: rotateY(-180deg); z-index: 25; }
+#c25:checked ~ .flip-book #p25 { transform: rotateY(-180deg); z-index: 26; }
+#c26:checked ~ .flip-book #p26 { transform: rotateY(-180deg); z-index: 27; }
+#c27:checked ~ .flip-book #p27 { transform: rotateY(-180deg); z-index: 28; }
+#c28:checked ~ .flip-book #p28 { transform: rotateY(-180deg); z-index: 29; }
+</style>
+</head>
+<body> 
+     <!-- <div id="preloader">
+        <div class="pyramid-loader">
+            <div class="wrapper">
+                <span class="side side1"></span>
+                <span class="side side2"></span>
+                <span class="side side3"></span>
+                <span class="side side4"></span>
+                <span class="shadow"></span>
+            </div>
+        </div>
+    </div> -->
+        <a href="#main-wrapper" id="backto-top" class="back-to-top"><i class="fas fa-angle-up"></i></a>
+    <div id="main-wrapper" class="main-wrapper overflow-hidden">
+             <header class="large-screens">
+        <div class="container">
+          <nav class="navbar navbar-expand-lg">
+            <div class="collapse navbar-collapse justify-content-between">
+              <a class="navbar-brand" href="index.html">
+                <img class="logo" alt="logo" src="assets/media/logo.png" />
+              </a>
+
+              <ul class="navbar-nav mainmenu">
+                <li class="menu-item has-children">
+                  <a href="index.html" class="main-menu-item">Home</a>
+                </li>
+                <li class="menu-item has-children">
+                  <a href="javascript:void(0);" class="main-menu-item"
+                    >about<i class="fas fa-caret-down m-1"></i
+                  ></a>
+                  <ul class="submenu">
+                    <li><a href="team.html">Our Team </a></li>
+                    <li><a href="about.html">About us </a></li>
+                  </ul>
+                </li>
+                <li class="menu-item has-children">
+                  <a href="javascript:void(0);" class="main-menu-item"
+                    >Facilitates <i class="fas fa-caret-down m-1"></i
+                  ></a>
+                  <ul class="submenu">
+                    <li><a href="activities.html">Activities </a></li>
+                    <li><a href="arcadegames.html">Arcade games </a></li>
+                    <li><a href="equipment.html">Equipment</a></li>
+                    <li><a href="viprooms.html">VIP Room </a></li>
+                  </ul>
+                </li>
+                <li class="menu-item has-children">
+                  <a href="menu.html" class="main-menu-item">Menu </a>
+                </li>
+                <li class="menu-item has-children">
+                  <a href="contact.html" class="main-menu-item">Contact Us  </a>
+                </li>
+              </ul>
+              <ul class="navbar-nav mainmenu custom">
+                <li class="menu-item has-children">
+                  <a href="" class="main-menu-item">BOOK NOW</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </header>
+      <header class="small-screen">
+        <div class="container">
+          <div class="mobile-menu">
+            <div>
+              <a class="navbar-brand" href="index.html"
+                ><img alt="" src="./assets/media/logo.png"
+              /></a>
+            </div>
+            <div class="hamburger-menu">
+              <div class="bar"></div>
+            </div>
+          </div>
+          <div class="blur-overlay"></div>
+          <nav class="mobile-navar d-xl-none">
+            <ul>
+              <li class="has-children"><a href="index.html">Home</a></li>
+              <li class="has-children">
+                about <span class="icon-arrow"></span>
+                <ul class="children">
+                  <li><a href=" team.html">Our Team </a></li>
+                  <li><a href="viprooms.html">About us </a></li>
+                </ul>
+              </li>
+              <li class="has-children">
+                Facilitates <span class="icon-arrow"></span>
+                <ul class="children">
+                  <li><a href="activities.html">Activities </a></li>
+                  <li><a href="arcadegames.html">Arcade games </a></li>
+                  <li><a href="equipment.html">Equipment </a></li>
+                  <li><a href="viprooms.html">VIP Room </a></li>
+                </ul>
+              </li>
+              <li class="has-children">
+                <a href="menu.html">Menu </a>
+              </li>
+              <li class="has-children">
+                <a href="contact.html">Contact Us  </a>
+              </li>
+              <li class="has-children">
+                <a href=" ">BOOK NOW  </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+  <div class="book" style="padding-top: 200px;">
+    <input type="checkbox" id="c0">
+    <input type="checkbox" id="c1">
+    <input type="checkbox" id="c2">
+    <input type="checkbox" id="c3">
+    <input type="checkbox" id="c4">
+    <input type="checkbox" id="c5">
+    <input type="checkbox" id="c6">
+    <input type="checkbox" id="c7">
+    <input type="checkbox" id="c8">
+    <input type="checkbox" id="c9">
+    <input type="checkbox" id="c10">
+    <input type="checkbox" id="c11">
+    <input type="checkbox" id="c12">
+    <input type="checkbox" id="c13">
+    <input type="checkbox" id="c14">
+    <input type="checkbox" id="c15">
+    <input type="checkbox" id="c16">
+    <input type="checkbox" id="c17">
+    <input type="checkbox" id="c18">
+    <input type="checkbox" id="c19">
+    <input type="checkbox" id="c20">
+    <input type="checkbox" id="c21">
+    <input type="checkbox" id="c22">
+    <input type="checkbox" id="c23">
+    <input type="checkbox" id="c24">
+    <input type="checkbox" id="c25">
+    <input type="checkbox" id="c26">
+    <input type="checkbox" id="c27">
+    <input type="checkbox" id="c28">
+    
+    <div id="cover">
+        <div>mines gaming center<br><br> Menu</div>
+    </div>
+    
+    <div class="flip-book">
+         <div class="flip" id="p0">
+            <div class="back">
+                <div class="category">category name</div>
+                <div class="product">product name  </div>
+                <span class="price">price</span>
+
+                 <br>
+                <div class="product"> product name  </div>
+                <span class="price">price</span>
+                <br>
+                
+                <div class="product"> product name  </div>
+                <span class="price">price</span>
+                <br>
+
+                <label class="back-btn" for="c0">Back</label>
+            </div>
+            <div class="front">
+                <img class="menu_img" src="https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Starters">
+                
+                <label class="next-btn" for="c0">Next</label>
+            </div>
+        </div>
+
+         <div class="flip" id="p1">
+            <div class="back">
+                <div class="category"> category name</div>
+                <div class="product"> product name  </div>
+                <span class="price">price</span>
+                                  <br>
+
+                <div class="product"> product name </div>
+                <span class="price">price</span>
+                <br>
+
+                <div class="product">product name </div>
+                <span class="price">price</span>
+                <br>
+                <label class="back-btn" for="c1">Back</label>
+            </div>
+            <div class="front">
+                <img class="menu_img"  src="https://images.unsplash.com/photo-1546793665-c74683f339c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Salads">
+   
+                <label class="next-btn" for="c1">Next</label>
+            </div>
+        </div>
+
+         <div class="flip" id="p2">
+            <div class="back">
+                <div class="category">category name</div>
+                <div class="product"> product name  </div>
+                <span class="price">price</span>
+                <br>
+
+                <div class="product">product name  </div>
+                <span class="price">price</span>
+                <br>
+
+                <div class="product"> product name  </div>
+                <span class="price">price</span>
+                <br>
+                <label class="back-btn" for="c2">Back</label>
+            </div>
+            <div class="front">
+                <img class="menu_img" src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Main Courses">
+            
+                <label class="next-btn" for="c2">Next</label>
+            </div>
+        </div>
+
+         <div class="flip" id="p3">
+            <div class="back">
+                <div class="category">category name </div>
+                <div class="product">product name  </div>
+                <span class="price">price</span>
+                <br>
+
+                <div class="product">product name </div>
+                <span class="price">price</span>
+                <br>
+
+                <div class="product"> product name </div>
+                <span class="price">price</span>
+                <label class="back-btn" for="c3">Back</label>
+            </div>
+            <div class="front">
+                <img class="menu_img" src="https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Pasta">
+        
+                <label class="next-btn" for="c3">Next</label>
+            </div>
+        </div>
+
+         <div class="flip" id="p4">
+            <div class="back">
+                <div class="category">category name</div>
+                <div class="product">product name  </div>
+                <span class="price">price</span>
+                <br>
+                <div class="product">product name  </div>
+                <span class="price">price</span>
+                <br>
+                <div class="product">product name </div>
+                <span class="price">price</span>
+                <label class="back-btn" for="c4">Back</label>
+            </div>
+            <div class="front">
+                <img class="menu_img" src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Desserts">
+            
+                <label class="next-btn" for="c4">Next</label>
+            </div>
+        </div>
+
+         <div class="flip" id="p5">
+            <div class="back">
+                <div class="category">category name</div>
+                <div class="product">product name </div>
+                <span class="price">price</span>
+                <br>
+                <div class="product">product name  </div>
+                <span class="price">price</span>
+                <br>
+                <div class="product"> product name  </div>
+                <span class="price">price</span>
+                 
+                <label class="back-btn" for="c5">Back</label>
+            </div>
+            <div class="front">
+                <img class="menu_img" src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Drinks">
+           
+                <label class="next-btn" for="c5">Next</label>
+            </div>
+        </div>
+
+         <div class="flip" id="p6">
+            <div class="back">
+                <div class="category"> category name</div>
+                <div class="product">product name  </div> 
+                <span class="price">price</span>
+                <br>
+             
+                <div class="product">product name  </div>
+                <span class="price">price</span>
+                <br>
+                <div class="product">product name  </div>
+                <span class="price">price</span>
+                     
+                <label class="back-btn" for="c6">Back</label>
+            </div>
+            <div class="front">
+                <img class="menu_img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Chef's Specials">
+             
+                <label class="next-btn" for="c6">Next</label>
+            </div>
+        </div>
+
+         <div class="flip" id="p7">
+            <div class="back">
+                <div style="text-align: center; padding: 40px;">
+                    <h2>Thank You!</h2>
+                    <p>We hope you enjoyed browsing our menu. We look forward to serving you!</p>
+               
+                </div>
+                <label class="back-btn" for="c7">Back</label>
+            </div>
+            <div class="front">
+                <img class="menu_img" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Restaurant Interior">
+              
+                <label class="next-btn" for="c7">Next</label>
+            </div>
+        </div>
+    </div>
+</div>
+      
+      <footer>
+        <div class="image-slider pt-40">
+          <div class="img-block">
+            <img src="assets/media/images/bs-1.png" alt="" />
+          </div>
+          <div class="img-block">
+            <img src="assets/media/images/bs-2.png" alt="" />
+          </div>
+          <div class="img-block">
+            <img src="assets/media/images/bs-3.png" alt="" />
+          </div>
+          <div class="img-block">
+            <img src="assets/media/images/bs-4.png" alt="" />
+          </div>
+          <div class="img-block">
+            <img src="assets/media/images/bs-5.png" alt="" />
+          </div>
+          <div class="img-block">
+            <img src="assets/media/images/bs-6.png" alt="" />
+          </div>
+          <div class="img-block">
+            <img src="assets/media/images/bs-7.png" alt="" />
+          </div>
+          <div class="img-block">
+            <img src="assets/media/images/bs-8.png" alt="" />
+          </div>
+          <div class="img-block">
+            <img src="assets/media/images/bs-9.png" alt="" />
+          </div>
+          <div class="img-block">
+            <img src="assets/media/images/bs-10.png" alt="" />
+          </div>
+          <div class="img-block">
+            <img src="assets/media/images/bs-11.png" alt="" />
+          </div>
+        </div>
+        <div class="container">
+          <div class="footer-main">
+            <div class="row" id="footer_row">
+              <div class="col-xl-3 col-md-7">
+                <div class="widget mb-xl-0">
+                  <a href="index.html" class="mb-16"
+                    ><img
+                      class="footer-logo"
+                      src="assets/media/logo.png"
+                      alt=""
+                  /></a>
+                </div>
+              </div>
+              <div class="col-xl-2 offset-xl-1 col-sm-6">
+                <div class="widget mb-64 mb-xl-0">
+                  <h4 class="mb-24">Quick Links</h4>
+                  <ul class="list unstyled">
+                    <li class="mb-8">
+                      <h6><a href="index.html">Home</a></h6>
+                    </li>
+                    <li class="mb-8">
+                      <h6><a href="about.html">About us</a></h6>
+                    </li>
+                    <li class="mb-8">
+                      <h6><a href="team.html"> Our Team</a></h6>
+                    </li>
+                    <li>
+                      <h6><a href="contact.html">Contact</a></h6>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="col-xl-3">
+                <div class="widget">
+                  <h4 class="mb-24">Genres</h4>
+                  <ul class="contact-list unstyled mb-16">
+                    <li class="mb-8">
+                      <i class="fas fa-map-marker-alt"></i>
+                      <h6>123 Main Street, Anytown, USA.</h6>
+                    </li>
+                    <li class="mb-8">
+                      <a href="tel:0123456789">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+1 233 898 0897</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="mailto:info@example.com">
+                        <i class="fas fa-envelope"></i>
+                        <span>email@example.com</span>
+                      </a>
+                    </li>
+                  </ul>
+
+                  <p>©2025 <a href="index.html"></a>. All Rights Reserved.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+      
+    </div>
+     <script src="assets/js/vendor/jquery-3.6.3.min.js"></script>
+    <script src="assets/js/vendor/bootstrap.min.js"></script>
+    <script src="assets/js/vendor/slick.min.js"></script>
+    <script src="assets/js/vendor/jquery-appear.js"></script>
+    <script src="assets/js/vendor/jquery-validator.js"></script>
+    <script src="assets/js/vendor/aksVideoPlayer.js"></script>
+
+     <script src="assets/js/app.js"></script>
+</body>
+</html>
+ 
