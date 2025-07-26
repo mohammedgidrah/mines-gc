@@ -2,8 +2,26 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-    <title>VIP Room Gallery - Gaming Center</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta
+      name="description"
+      content="Play the latest PS5 & PS4 games at Mines Gaming Center! Affordable hourly rentals, 4K setups, multiplayer stations, and esports-ready gaming. Book your session today!"
+    />
+    <meta
+      name="keywords"
+      content="PlayStation rental, PS5 gaming near me, hourly gaming lounge, Mines Gaming Center, PS4 rental, esports gaming hub, gaming center [your city], competitive gaming"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="" />
+    <meta
+      property="og:title"
+      content="Mines Gaming Center"
+    />
+    <meta
+      property="og:description"
+      content="Rent PS5 & PS4 by the hour in a high-end gaming environment. Perfect for solo play, friends, or tournaments!"
+    />
+    <title>Menu</title>
      <link
       rel="shortcut icon"
       type="image/x-icon"
@@ -40,7 +58,7 @@ input {
     border-radius: 10px;
     padding: 20px;
     /* Remove large top padding for mobile, add via media query for desktop */
-    padding-top: 0;
+    padding-top: 175px;
 }
 
 #cover {
@@ -176,7 +194,7 @@ input {
 
 @media screen and (max-width: 991px) {
     .book {
-        padding-top: 0px !important;
+        padding-top: 150px !important;
     }
     #cover, .flip-book {
         width: min(90vw, 400px) !important;
@@ -210,6 +228,7 @@ input {
     .category, .product, .ingredients, .price {
         font-size: 50%;
     }
+   
 }
 
 
@@ -325,7 +344,7 @@ input {
 </style>
 </head>
 <body> 
-     <!-- <div id="preloader">
+     <div id="preloader">
         <div class="pyramid-loader">
             <div class="wrapper">
                 <span class="side side1"></span>
@@ -335,7 +354,7 @@ input {
                 <span class="shadow"></span>
             </div>
         </div>
-    </div> -->
+    </div>
         <a href="#main-wrapper" id="backto-top" class="back-to-top"><i class="fas fa-angle-up"></i></a>
     <div id="main-wrapper" class="main-wrapper overflow-hidden">
              <header class="large-screens">
@@ -387,7 +406,7 @@ input {
         </div>
       </header>
       <header class="small-screen">
-        <div class="container">
+        <div class="container" id="small-screen-container">
           <div class="mobile-menu">
             <div>
               <a class="navbar-brand" href="index.html"
@@ -431,7 +450,7 @@ input {
           </nav>
         </div>
       </header>
-  <div class="book" style="padding-top: 200px;">
+  <div class="book"  id="menu-padding">
     <input type="checkbox" id="c0">
     <input type="checkbox" id="c1">
     <input type="checkbox" id="c2">

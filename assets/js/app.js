@@ -498,20 +498,33 @@
     // Achivement Counter
     counterActivate: function () {
       $(".counter-count .count").each(function () {
-        $(this)
-          .prop("Counter", 0)
-          .animate(
-            {
-              Counter: $(this).text(),
-            },
-            {
-              duration: 2000,
-              easing: "swing",
-              step: function (now) {
-                $(this).text(Math.ceil(now), 3);
-              },
-            }
-          );
+        var $this = $(this);
+        var targetValue = parseInt($this.text());
+        var startValue = 0; // Your desired start value
+        var currentValue = startValue;
+
+        // Set initial value
+        $this.text(startValue);
+
+        // Create a custom animation using setInterval
+        var duration = 2000; // 2 seconds
+        var interval = 50; // Update every 50ms
+        var steps = duration / interval;
+        var increment = (targetValue - startValue) / steps;
+        var stepCount = 0;
+
+        var animationTimer = setInterval(function () {
+          stepCount++;
+          currentValue = Math.round(startValue + increment * stepCount);
+
+          // Ensure we don't exceed target
+          if (currentValue >= targetValue) {
+            currentValue = targetValue;
+            clearInterval(animationTimer);
+          }
+
+          $this.text(currentValue);
+        }, interval);
       });
     },
 
@@ -585,5 +598,55 @@
   };
   Init.i();
 })(window, document, jQuery);
-
+ document.addEventListener('DOMContentLoaded', function() {
+    const hideNavBtn = document.getElementById('hide-nav-btn');
+    const backToTopBtn = document.querySelector('.back-to-top');
+    const headers = document.querySelectorAll('header');
+    const heroBanner = document.querySelector('.hero-banner-1 .content');
   
+    
+    // Toggle navigation and content visibility
+    hideNavBtn.addEventListener('click', function() {
+      headers.forEach(header => {
+        header.style.display = header.style.display === 'none' ? '' : 'none';
+      });
+      
+      if (heroBanner) {
+        heroBanner.style.display = heroBanner.style.display === 'none' ? '' : 'none';
+      }
+      
+      // Change icon based on state
+      const icon = this.querySelector('i');
+      if (headers[0].style.display === 'none') {
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+        this.title = 'Show Navigation';
+
+      } else {
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+        this.title = 'Hide Navigation';
+      }
+    });
+    
+ 
+    // Show/hide back-to-top button based on scroll position
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('active');
+        hideNavBtn.style.display = 'none';
+      } else {
+        backToTopBtn.classList.remove('active');
+        hideNavBtn.style.display = 'block';
+      }
+    });
+    
+    // Back to top functionality
+    backToTopBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  });
