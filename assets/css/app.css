@@ -2409,7 +2409,7 @@ footer .footer-main .widget .input-group button {
 .hero-banner-1 {
   position: relative;
   width: 100%;
-  height: calc(100vh + 16px);
+  height: calc(150vh + 16px);
   overflow: hidden;
   display: grid;
   align-content: center;
